@@ -20,13 +20,13 @@ const AddStudent = () => {
 
    const saveStudent = (e) => {
     e.preventDefault();
-    // const token = sessionStorage.getItem('access_token')
+    const token = sessionStorage.getItem('access_token')
      
     axios.post('http://localhost:4000/students', formData,{
-     /* headers: {
+      headers: {
           Authorization: `Bearer ${token}`,
           'Content-type': 'application/json',
-        },*/
+        },
     })
       .then((res) => {
           navigate('/allstudents')

@@ -7,7 +7,7 @@ const StudentDetail = () => {
   const [student, setStudent] = useState({});
 
   useEffect(() => {
-     axios.get( `http://localhost:4000/student/${id}`)
+     axios.get( `http://localhost:4000/students/${id}`)
       .then(res => {
         console.log(res);
         setStudent(res.data);
@@ -15,18 +15,15 @@ const StudentDetail = () => {
       .catch(err => console.log(err));
   }, [id]);
 
-  if (Object.keys(student).length === 0) {
-    return <div>Loading...</div>;
-  }
 
   return (
-    <div>
-      <h2>Student Details</h2>
-      <p>ID: {student._id}</p>
-      <p>First Name: {student.firstname}</p>
-      <p>Last Name: {student.lastname}</p>
-      <p>Gender: {student.gender}</p>
-      <Link to='/allstudents' className="btn btn-primary">Back</Link>
+    <div className="container m-5 p-5 text-center rounded">
+      <h2 className="p-3">Student Details</h2>
+      <p><span className="fw-bolder">ID: </span> {student._id}</p>
+      <p><span  className="fw-bolder">First Name: </span>{student.firstname}</p>
+      <p><span  className="fw-bolder">Last Name: </span> {student.lastname}</p>
+      <p><span  className="fw-bolder">Gender: </span>{student.gender}</p>
+      <Link to='/allstudents' className="btn" id="add">Back</Link>
     </div>
   );
 };

@@ -42,7 +42,7 @@ if (response.status === 200) {
     return (
         <div className="mt-5">
            
-        <div className="bg-secondary-subtle container rounded mt-4 p-4" width="200px">
+        <div className=" container rounded mt-4 p-4" >
 <form onSubmit={loginUser}>
    <h1 className="text-center">Login</h1>
   <div className="form-group p-2">
@@ -65,7 +65,7 @@ if (response.status === 200) {
     onChange={handlePassword}/>
   </div>
       {error && <div className="alert alert-danger">{error}</div>}
-  <button type="submit" className="btn btn-primary mx-2 mt-2">Login</button>
+  <button type="submit" className="btn  mx-2 mt-2" id="add">Login</button>
 </form>
 <div className="pt-4 text-center">
   Dont have an account? <a href="signup">signup</a>

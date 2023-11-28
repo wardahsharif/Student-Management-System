@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import Navbar from './navbar';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import './getStudent.css';
 
 const GetStudent = () => {
   const [getData, setGetData] = useState([]);
-
+  const [confirmation, setConfirmation] = useState(false);
  
-const studentInfo = async () => {
+    const studentInfo = async () => {
     try {
          const token = sessionStorage.getItem('access_token')
      
@@ -26,16 +27,36 @@ const studentInfo = async () => {
   }
   };
 
-    const handleDelete = (id) => {
+
+
+  const handleDelete = (id) => {
+ 
+  const confirmation = window.confirm('Are you sure you want to delete this student?');
+  
+  if (confirmation) {
     axios
-      .delete('http://localhost:4000/deleteStudent/' + id)
+      .delete(`http://localhost:4000/deleteStudent/${id}`)
       .then((res) => {
         console.log(res);
-         setGetData((prevData) => prevData.filter((student) => student._id !== id));
-       //window.location.reload();
+        toast.success('Student deleted successfully', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+        });
+       
+        window.location.reload();
+        setConfirmation(false);
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => {
+        console.log(err);
+        toast.error('Error deleting student', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+        });
+      });
+  }
+
+};
+
 
 
 return (
@@ -82,13 +103,15 @@ return (
                   >
                     Update
                   </Link>
-                  <button
+                    <button
                     className="btn "
                     id="delete"
                     onClick={() => handleDelete(data._id)}
                   >
                     Delete
                   </button>
+
+                  
                 </td>
               </tr>
             ))}
@@ -96,6 +119,7 @@ return (
         </table>
       )}
     </div>
+    <ToastContainer />
   </div>
 );
 

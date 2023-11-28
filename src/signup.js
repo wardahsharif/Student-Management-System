@@ -57,7 +57,7 @@ const SignUp = () => {
 
     return (
         <div className="mt-5"> 
-            <div class="bg-secondary-subtle container rounded mt-4 p-4" width="200px">
+            <div class=" container rounded mt-4 p-4" width="100px">
 <form onSubmit={saveUser}>
    <h1 className="text-center">Sign Up</h1>
   <div className="form-group p-2">
@@ -95,7 +95,7 @@ const SignUp = () => {
   </div>
   
  
-  <button type="submit" className="btn btn-primary mx-2 mt-3">Sign Up</button> <br/>
+  <button type="submit" className="btn  mx-2 mt-3" id="add">Sign Up</button> <br/>
      <br />
           <ToastContainer />
 <div className="pt-4 text-center">
